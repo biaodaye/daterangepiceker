@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title></title>
+
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<div class="container ">
+		<a href="http://www.daterangepicker.com/" target="_blank" class="btn btn-primary">DateRangePicker官网</a>
+		<h3>日期范围选择器</h3>
+		<div class="row input-group input-group-lg ">
+			<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+			<input type="text" id="demo" class="form-control">
+		</div>
+		<br />
+	</div>
+
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="js/moment.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/daterangepicker.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+		$('#demo').daterangepicker({
+			//"singleDatePicker": true,//单个日期, 选择它最好把时间去掉
+			//"startDate": "01/01/2017", //开始时间,不写默认为当前时间
+			//"endDate": "01/02/2017", //结束时间
+			//"showDropdowns": true, //显示日历上方的年份和月份选择框跳转到特定的月份和年份
+			"showWeekNumbers": true, //在日历的每周开始时显示本地化的周数
+			"opens": "right", //选择器是否与left,center,right放置在HTML元素附近
+			//"drops": "down", //（'down'或'up'）选择器是否出现在下面（默认）或以上附加到的HTML元素之上
+			//"autoApply": true, //隐藏应用和取消按钮，并且一旦选择了两个日期或预定义范围，就自动应用新的日期范围
+			"linkedCalendars": false, //启用时，显示的两个日历将始终为两个连续的月份（即1月和2月），并且当单击日历上方的左侧或右侧箭头时，两个日历都将提前。禁用时，两个日历可以单独提前并显示任何月/年。
+			//"autoUpdateInput": false, //指示日期范围选择器是否应<input>在初始化期间以及所选日期更改时自动更新其附加元素的值。
+			//"buttonClasses": "btn btn-danger",
+			"applyClass": "btn btn-info",
+			"cancelClass": "btn btn-info",
+			//"dateLimit": { "days": 7 }, //日期范围跨度
+			"timePicker": true, //时间 
+			"timePicker24Hour": true, //24小时制
+			"timePickerSeconds": true, //显示秒
+			"locale": {
+				"format": "YYYY年MM月DD日  H:mm:ss",
+				"applyLabel": '确定',
+				"separator": "  至  ",
+				"weekLabel": "W",
+				cancelLabel: '取消',
+				fromLabel: '起始时间',
+				toLabel: '结束时间',
+				customRangeLabel: '自定义',
+				daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
+				monthNames: ['一月', '二月', '三月', '四月', '五月', '六月',
+					'七月', '八月', '九月', '十月', '十一月', '十二月'
+				],
+				firstDay: 0
+			},
+			"ranges": {
+				"今天": [
+					moment(), moment()
+				],
+				"昨天": [
+					moment().subtract(1, 'days'), moment().subtract(1, 'days')
+				],
+				"最近7天": [
+					moment().subtract(6, 'days'), moment()
+				],
+				"最近15天": [
+					moment().subtract(14, 'days'), moment()
+				],
+				"最近30天": [
+					moment().subtract(29, 'days'), moment()
+				],
+				"这个月": [
+					moment().startOf('month'), moment().endOf('month')
+				],
+				"上个月": [
+					moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')
+				],
+				"下个月": [
+					moment().subtract(-1, 'month').startOf('month'), moment().subtract(-1, 'month').endOf('month')
+				]
+			}, //设置用户可以选择的预定义日期范围。每个键是范围的标签，其值是一个数组，其中两个日期表示范围的界限
+		}, function(start, end, label) {
+			console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+		});
+	</script>
+</body>
+
+</html>
